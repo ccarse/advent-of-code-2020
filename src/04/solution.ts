@@ -4,15 +4,14 @@ const inputText = fs.readFileSync('./src/04/input.txt', 'utf-8').trim();
 const passports = inputText.split('\n\n');
 
 const requiredFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
-let validCount = 0;
-for (const passport of passports) {
+
+const validCount = passports.filter(passport => {
   const fields = passport.split(/\s+/).map(p => p.split(':')[0]);
-  if (requiredFields.every(v => fields.includes(v))) { validCount++; }
-}
+  return requiredFields.every(v => fields.includes(v));
+}).length;
 
 // Part 1
 console.log(`Part 1: ${validCount}`);
-
 
 // Part 2
 const hexdigits = new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']);
@@ -22,7 +21,7 @@ const validArray = passports.filter(passportTxt => {
   const fields = passportTxt.split(/\s+/);
 
   const passport = Object.fromEntries(fields.map(field => field.split(':')));
-  // console.log(passport);
+
   const byrInt = parseInt(passport.byr, 10);
   if (!(byrInt >= 1920 && byrInt <= 2002)) { return false; }
 
