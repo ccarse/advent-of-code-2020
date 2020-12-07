@@ -5,8 +5,8 @@
   "repository": "",
   "main": "src/index.ts",
   "scripts": {
-    "lint": "tslint \"src/06/*.ts\" --project tsconfig.json",
-    "start": "ts-node src/06/solution.ts"
+    "lint": "tslint \"src/07/*.ts\" --project tsconfig.json",
+    "start": "ts-node src/07/solution.ts"
   },
   "author": "Cody Carse",
   "license": "ISC",
